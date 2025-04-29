@@ -1,0 +1,199 @@
+/* === Farbvariablen (Dark & Light Mode) === */
+:root {
+    --bg-color: #121212;
+	--popup-color: #DD00FF;
+    --card-bg: #2a2a2a;
+    --text-main: #e0e0e0;
+    --text-accent: #00e6f2;
+}
+
+.light-mode {
+    --bg-color: #f5f5f5;
+	--popup-color: #00E6F2;
+    --card-bg: #ffffff;
+    --text-main: #212121;
+    --text-accent: #006eff;
+}
+
+/* === Grundlayout === */
+body {
+    background-color: var(--bg-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* === Header === */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+	margin-top: 10px;
+	margin-top: 5px;
+    width: 100%;
+}
+
+.toggle-switch {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 60px;
+    height: 30px;
+    background-color: #444;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle-label .slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-label .icon {
+    position: absolute;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.toggle-label .sun {
+    left: 6px;
+    color: #fdd835;
+}
+
+.toggle-label .moon {
+    right: 6px;
+    color: #90caf9;
+}
+
+.toggle-switch:checked + .toggle-label {
+    background-color: #ddd;
+}
+
+.toggle-switch:checked + .toggle-label .slider {
+    transform: translateX(30px);
+}
+
+/* === Card Container === */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* === Cards & Popups === */
+.card, .popup {
+    border-radius: 16px;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    padding: 24px;
+    margin: 12px;
+    flex: 1 1 300px;
+    min-width: 280px;
+    max-width: 400px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover, .popup:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.card h2, .popup h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--text-accent);
+}
+
+.card p, .popup p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* === Popup-Bild === */
+.popup .popup-image {
+    visibility: hidden;
+    width: 500px;
+    max-height: 400px;
+    background-color: var(--card-bg);
+	border: 2px solid var(--popup-color); /* z. B. Neon-Lila */
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popup .popup-image::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--popup-color) transparent transparent transparent; /* gleiche Farbe wie der Rahmen */
+}
+
+/* === Sichtbarkeit Toggle für Popup === */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* === Toggle-Switch === */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-switch {
+    transform: scale(1.3);
+    cursor: pointer;
+}

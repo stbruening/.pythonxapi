@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Analytics Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+
+</head>
+<body>
+	<div class="toggle-container">
+		<input type="checkbox" id="toggle-switch" class="toggle-switch">
+		<label for="toggle-switch" class="toggle-label">
+			<span class="icon sun">☀️</span>
+			<span class="slider"></span>
+			<span class="icon moon">🌙</span>
+		</label>
+	</div>
+
+	<header>
+	<div class="container">
+        <div class="header">
+            <h1>Room Analytics Dashboard</h1> <!-- Dashboard header -->
+        </div>
+	<header>
+
+	<main>
+		
+		<div class="card">
+			<h2>Unit Name</h2>
+			<p> {{ unit_name }} </p>
+		</div>
+	
+		
+		<div class="card-container">
+            <div class="popup">
+                <h2>Room Occupied</h2> <!-- Card title -->
+                <p onmouseover="showPopup('room_occupied_popup')" onmouseout="hidePopup('room_occupied_popup')"> {{room_occupied }} </p> <!-- Card content -->
+				<div class="popup-image" id="room_occupied_popup">
+					<img src="room_occupied_diagram.png" alt="Popup Image" style="width: 100%;">
+				</div>
+            </div>
+		
+		<div class="popup">
+			<h2>People Count</h2> <!-- Card title -->
+			<p onmouseover="showPopup('people_count_popup')"onmouseout="hidePopup('people_count_popup')"> {{ people_count }} </p> <!-- Card content -->
+			<div class="popup-image" id="people_count_popup">
+				<img src="people_count_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Occupation Level</h2> <!-- Card title -->
+			<p onmouseover="showPopup('occupation_level_popup')" onmouseout="hidePopup('occupation_level_popup')"> {{ occupation_level }} </p> <!-- Card content -->
+			<div class="popup-image" id="occupation_level_popup">
+				<img src="occupation_level_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Ambient Noise</h2> <!-- Card title -->
+			<p onmouseover="showPopup('ambient_noise_popup')"onmouseout="hidePopup('ambient_noise_popup')"> {{ ambient_noise }} </p> <!-- Card content -->
+			<div class="popup-image" id="ambient_noise_popup">
+				<img src="ambient_noise_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Ambient Temperature</h2> <!-- Card title -->
+			<p onmouseover="showPopup('ambient_temperature_popup')" onmouseout="hidePopup('ambient_temperature_popup')"> {{ ambient_temp }} </p> <!-- Card content -->
+			<div class="popup-image" id="ambient_temperature_popup">
+				<img src="ambient_temp_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Relative Humidity</h2> <!-- Card title -->
+			<p onmouseover="showPopup('relative_humidity_popup')" onmouseout="hidePopup('relative_humidity_popup')"> {{ relative_humi }} </p> <!-- Card content -->
+			<div class="popup-image" id="relative_humidity_popup">
+				<img src="relative_humidity_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Sound Level</h2> <!-- Card title -->
+			<p onmouseover="showPopup('sound_level_popup')" onmouseout="hidePopup('sound_level_popup')"> {{ sound_level }} </p> <!-- Card content -->
+			<div class="popup-image" id="sound_level_popup">
+				<img src="sound_level_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+        
+        <div class="card">
+            <h2>Timestamp</h2> <!-- Card title -->
+            <p> {{time_stamp }}</p> <!-- Card content -->
+        </div>
+	</main>
+	</div>
+<script>
+	// Toggle Color Scheme Change
+	document.addEventListener('DOMContentLoaded', function () {
+		var toggleSwitch = document.getElementById('toggle-switch');
+		toggleSwitch.addEventListener('change', function () {
+			document.body.classList.toggle('light-mode', toggleSwitch.checked);
+        });
+    });
+ 
+	// When the user does a mouseover on div, open the popup
+	function showPopup(popupId) {
+		var popup = document.getElementById(popupId);
+		popup.classList.toggle("show");
+	}
+	
+	//When the user ends the mouseover on div, hide the popup
+	function hidePopup(popupId) {
+		var popup = document.getElementById(popupId);
+		popup.classList.remove("show");
+	}
+	
+	document.querySelectorAll('.popup').forEach(popup => {
+    popup.addEventListener('mouseenter', () => {
+        const image = popup.querySelector('.popup-image');
+        const rect = image.getBoundingClientRect();
+
+        // Check if there's enough space below
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+
+        // Reset position
+        image.classList.remove('popup-top');
+
+        // If not enough space below, show above
+        if (spaceBelow < 150 && spaceAbove > 150) {
+            image.classList.add('popup-top');
+        }
+
+        image.classList.add('show');
+    });
+
+    popup.addEventListener('mouseleave', () => {
+        const image = popup.querySelector('.popup-image');
+        image.classList.remove('show', 'popup-top');
+		});
+	});
+</script>
+</body>
+</html>

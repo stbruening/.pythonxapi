@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="300"> <!-- Automatic refresh every 5 minutes -->
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div class="toggle-container">
+            <label class="toggle-label" for="toggle-switch">Switch Color Scheme:</label>
+            <input type="checkbox" id="toggle-switch" class="toggle-switch" onclick="toggleColorScheme()">
+        </div>
+
+	<header>
+	<div class="container">
+        <div class="header">
+            <h1>Room Analytics Dashboard</h1> <!-- Dashboard header -->
+        </div>
+	<header>
+
+	<main>
+		
+		<div class="card">
+			<h2>Unit Name</h2>
+			<p> Steffen Bruening Desk Pro </p>
+		</div>
+	
+		
+		<div class="card-container">
+            <div class="popup">
+                <h2>Room Occupied</h2> <!-- Card title -->
+                <p onmouseover="showPopup('room_occupied_popup')" onmouseout="hidePopup('room_occupied_popup')"> True </p> <!-- Card content -->
+				<div class="popup-image" id="room_occupied_popup">
+					<img src="room_occupied_diagram.png" alt="Popup Image" style="width: 100%;">
+				</div>
+            </div>
+		
+		<div class="popup">
+			<h2>People Count</h2> <!-- Card title -->
+			<p onmouseover="showPopup('people_count_popup')"onmouseout="hidePopup('people_count_popup')"> 1 </p> <!-- Card content -->
+			<div class="popup-image" id="people_count_popup">
+				<img src="people_count_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Occupation Level</h2> <!-- Card title -->
+			<p onmouseover="showPopup('occupation_level_popup')" onmouseout="hidePopup('occupation_level_popup')"> 100.0 </p> <!-- Card content -->
+			<div class="popup-image" id="occupation_level_popup">
+				<img src="occupation_level_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Ambient Noise</h2> <!-- Card title -->
+			<p onmouseover="showPopup('ambient_noise_popup')"onmouseout="hidePopup('ambient_noise_popup')"> 32 </p> <!-- Card content -->
+			<div class="popup-image" id="ambient_noise_popup">
+				<img src="ambient_noise_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Ambient Temperature</h2> <!-- Card title -->
+			<p onmouseover="showPopup('ambient_temperature_popup')" onmouseout="hidePopup('ambient_temperature_popup')"> 26.3 </p> <!-- Card content -->
+			<div class="popup-image" id="ambient_temperature_popup">
+				<img src="ambient_temp_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Relative Humidity</h2> <!-- Card title -->
+			<p onmouseover="showPopup('relative_humidity_popup')" onmouseout="hidePopup('relative_humidity_popup')"> 50 </p> <!-- Card content -->
+			<div class="popup-image" id="relative_humidity_popup">
+				<img src="relative_humidity_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h2>Sound Level</h2> <!-- Card title -->
+			<p onmouseover="showPopup('sound_level_popup')" onmouseout="hidePopup('sound_level_popup')"> 33 </p> <!-- Card content -->
+			<div class="popup-image" id="sound_level_popup">
+				<img src="sound_level_diagram.png" alt="Popup Image" style="width: 100%;">
+			</div>
+		</div>
+        
+        <div class="card">
+            <h2>Timestamp</h2> <!-- Card title -->
+            <p> 2025-04-28 19:03:07+02:00</p> <!-- Card content -->
+        </div>
+	</main>
+	</div>
+<script>
+	// Toggle Color Scheme Change
+	document.addEventListener('DOMContentLoaded', function () {
+		var toggleSwitch = document.getElementById('toggle-switch');
+		toggleSwitch.addEventListener('change', function () {
+			document.body.classList.toggle('light-mode', toggleSwitch.checked);
+        });
+    });
+ 
+	// When the user does a mouseover on div, open the popup
+	function showPopup(popupId) {
+		var popup = document.getElementById(popupId);
+		popup.classList.toggle("show");
+	}
+	
+	//When the user ends the mouseout on div, hide the popup
+	function hidePopup(popupId) {
+		var popup = document.getElementById(popupId);
+		popup.classList.remove("show");
+	}
+</script>
+</body>
+</html>
