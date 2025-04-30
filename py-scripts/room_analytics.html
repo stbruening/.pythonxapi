@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="300"> <!-- Automatic refresh every 5 minutes -->
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Analytics Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
 
 </head>
 <body>
-<div class="toggle-container">
-            <label class="toggle-label" for="toggle-switch">Switch Color Scheme:</label>
-            <input type="checkbox" id="toggle-switch" class="toggle-switch" onclick="toggleColorScheme()">
-        </div>
+	<div class="toggle-container">
+		<input type="checkbox" id="toggle-switch" class="toggle-switch">
+		<label for="toggle-switch" class="toggle-label">
+			<span class="icon sun">☀️</span>
+			<span class="slider"></span>
+			<span class="icon moon">🌙</span>
+		</label>
+	</div>
 
 	<header>
 	<div class="container">
@@ -54,7 +59,7 @@
 		
 		<div class="popup">
 			<h2>Ambient Noise</h2> <!-- Card title -->
-			<p onmouseover="showPopup('ambient_noise_popup')"onmouseout="hidePopup('ambient_noise_popup')"> 32 </p> <!-- Card content -->
+			<p onmouseover="showPopup('ambient_noise_popup')"onmouseout="hidePopup('ambient_noise_popup')"> 34 </p> <!-- Card content -->
 			<div class="popup-image" id="ambient_noise_popup">
 				<img src="ambient_noise_diagram.png" alt="Popup Image" style="width: 100%;">
 			</div>
@@ -62,7 +67,7 @@
 		
 		<div class="popup">
 			<h2>Ambient Temperature</h2> <!-- Card title -->
-			<p onmouseover="showPopup('ambient_temperature_popup')" onmouseout="hidePopup('ambient_temperature_popup')"> 26.3 </p> <!-- Card content -->
+			<p onmouseover="showPopup('ambient_temperature_popup')" onmouseout="hidePopup('ambient_temperature_popup')"> 26.2 </p> <!-- Card content -->
 			<div class="popup-image" id="ambient_temperature_popup">
 				<img src="ambient_temp_diagram.png" alt="Popup Image" style="width: 100%;">
 			</div>
@@ -70,7 +75,7 @@
 		
 		<div class="popup">
 			<h2>Relative Humidity</h2> <!-- Card title -->
-			<p onmouseover="showPopup('relative_humidity_popup')" onmouseout="hidePopup('relative_humidity_popup')"> 50 </p> <!-- Card content -->
+			<p onmouseover="showPopup('relative_humidity_popup')" onmouseout="hidePopup('relative_humidity_popup')"> 44 </p> <!-- Card content -->
 			<div class="popup-image" id="relative_humidity_popup">
 				<img src="relative_humidity_diagram.png" alt="Popup Image" style="width: 100%;">
 			</div>
@@ -78,7 +83,7 @@
 		
 		<div class="popup">
 			<h2>Sound Level</h2> <!-- Card title -->
-			<p onmouseover="showPopup('sound_level_popup')" onmouseout="hidePopup('sound_level_popup')"> 33 </p> <!-- Card content -->
+			<p onmouseover="showPopup('sound_level_popup')" onmouseout="hidePopup('sound_level_popup')"> 37 </p> <!-- Card content -->
 			<div class="popup-image" id="sound_level_popup">
 				<img src="sound_level_diagram.png" alt="Popup Image" style="width: 100%;">
 			</div>
@@ -86,7 +91,7 @@
         
         <div class="card">
             <h2>Timestamp</h2> <!-- Card title -->
-            <p> 2025-04-28 19:03:07+02:00</p> <!-- Card content -->
+            <p> 2025-04-30 18:26:37+02:00</p> <!-- Card content -->
         </div>
 	</main>
 	</div>
@@ -105,11 +110,37 @@
 		popup.classList.toggle("show");
 	}
 	
-	//When the user ends the mouseout on div, hide the popup
+	//When the user ends the mouseover on div, hide the popup
 	function hidePopup(popupId) {
 		var popup = document.getElementById(popupId);
 		popup.classList.remove("show");
 	}
+	
+	document.querySelectorAll('.popup').forEach(popup => {
+    popup.addEventListener('mouseenter', () => {
+        const image = popup.querySelector('.popup-image');
+        const rect = image.getBoundingClientRect();
+
+        // Check if there's enough space below
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+
+        // Reset position
+        image.classList.remove('popup-top');
+
+        // If not enough space below, show above
+        if (spaceBelow < 150 && spaceAbove > 150) {
+            image.classList.add('popup-top');
+        }
+
+        image.classList.add('show');
+    });
+
+    popup.addEventListener('mouseleave', () => {
+        const image = popup.querySelector('.popup-image');
+        image.classList.remove('show', 'popup-top');
+		});
+	});
 </script>
 </body>
 </html>

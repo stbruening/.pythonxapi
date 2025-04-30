@@ -1,0 +1,10 @@
+2025-04-30 18:13:17,425 - ERROR - Config file 'py-scripts/config.json' not found.
+2025-04-30 18:15:07,545 - ERROR - Config file 'py-scripts/config.json' not found.
+2025-04-30 18:18:05,757 - INFO - Session started.
+2025-04-30 18:19:35,564 - INFO - Session started.
+2025-04-30 18:20:49,433 - INFO - Session started.
+2025-04-30 18:20:52,507 - ERROR - Error while rendering html file: 'charmap' codec can't decode byte 0x8f in position 438: character maps to <undefined>
+2025-04-30 18:20:52,545 - INFO - Session closed
+2025-04-30 18:26:37,456 - INFO - Session started.
+2025-04-30 18:26:39,806 - INFO - HTML file succesfully created.
+2025-04-30 18:26:39,826 - INFO - Session closed
