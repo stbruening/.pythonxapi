@@ -1,5 +1,5 @@
 {
-  "device_ip": "192.168.178.48",
-  "username": "sbruning",
-  "password": "d1dpw4DP!"
+  "device_ip": "YOUR_DEVICE_IP",
+  "username": "YOUR LOCAL DEVICE ADMIN",
+  "password": "YOUR LOCAL DEVICE ADMIN PASSWORD"
 }
