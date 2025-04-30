@@ -16,13 +16,13 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Logging configuration
 logging.basicConfig(
-    filename='py-scripts/room_analytics.log',  # Definiert den Speicherort für das Logfile
+    filename='./room_analytics.log',  # Definiert den Speicherort für das Logfile
     level=logging.INFO,  # Legt das Minimum an Log-Level fest (z.B. INFO, ERROR)
     format='%(asctime)s - %(levelname)s - %(message)s'  # Definiert das Format der Lognachrichten
 )
 
 # Define the path to the config file
-config_file_path = 'py-scripts/config.json'
+config_file_path = './config.json'
 
 # Load configuration from JSON file
 try:
@@ -50,11 +50,11 @@ session_end_url = f'http://{device_ip}/xmlapi/session/end'
 get_xml_url = f'http://{device_ip}/getxml?location='
 
 # CSV File Path and Header
-filename = 'py-scripts/room_analytics.csv'
+filename = './room_analytics.csv'
 headers = ['unit_name', 'room_occupied', 'people_count', 'occupation_level', 'ambient_noise', 'ambient_temp', 'relative_humi', 'sound_level', 'time_stamp']
 
 # HTML Template
-template_file_path = 'py-scripts/template.html'
+template_file_path = './template.html'
 
 session = requests.Session()
 
@@ -124,7 +124,7 @@ def render_html(data):
     # creates html file
     try:
         # Read template
-        with open(template_file_path, 'r') as template_file:
+        with open(template_file_path, 'r',encoding='utf-8') as template_file:
             template_content = template_file.read()
         
         # Create Jinja2 template object
@@ -144,8 +144,8 @@ def render_html(data):
         )
 
         # Save rendered html in file
-        output_file_path = 'py-scripts/room_analytics.html'
-        with open(output_file_path, 'w') as output_file:
+        output_file_path = './room_analytics.html'
+        with open(output_file_path, 'w' ,encoding='utf-8') as output_file:
             output_file.write(rendered_html)
         logging.info("HTML file succesfully created.")
       
@@ -195,7 +195,7 @@ def create_plots():
         plt.grid(True, color='#6E84A6')
 
         # Save diagram to png
-        plot_file_path = f'py-scripts/{column}_diagram.png'
+        plot_file_path = f'./{column}_diagram.png'
         plt.savefig(plot_file_path, dpi=300, transparent=True)
         plt.close()
 
